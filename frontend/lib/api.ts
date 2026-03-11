@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl.slice(0, -1) : rawApiUrl;
 
 export async function syncUser(token: string, role: string, email: string, name: string) {
     const res = await fetch(`${API_URL}/api/users/sync`, {
