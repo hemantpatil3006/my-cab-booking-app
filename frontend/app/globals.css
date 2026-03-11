@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-brand-violet: oklch(0.511 0.262 276.966);
+  --color-brand-cyan: oklch(0.704 0.191 192.316);
+}
+
+/* Base styles */
+body {
+  background-color: oklch(0.129 0.042 264.695); /* gray-950 */
+  color: white;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Map sizing */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: #f8fafc !important; /* slate-50 */
+}
+
+/* Hide zoom controls for a cleaner look */
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Utilities */
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility gradient-text {
+  background: linear-gradient(to right, oklch(0.707 0.165 273.421), oklch(0.704 0.191 192.316));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility btn-primary {
+  background: linear-gradient(to right, oklch(0.511 0.262 276.966), oklch(0.558 0.288 272.396));
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+}
+
+@utility btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s;
+}
+
+@utility card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+@utility glass-dark {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@utility shadow-3xl {
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse-violet {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+
+@utility animate-pulse-violet {
+  animation: pulse-violet 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animations from tailwind-animate */
+.animate-in {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.fade-in { opacity: 0; animation-name: fadeIn; }
+.zoom-in-95 { transform: scale(0.95); animation-name: zoomIn; }
+.slide-in-from-bottom { transform: translateY(20px); animation-name: slideInBottom; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes zoomIn { from { transform: scale(0.95); } to { transform: scale(1); } }
+@keyframes slideInBottom { from { transform: translateY(20px); } to { transform: translateY(0); } }
