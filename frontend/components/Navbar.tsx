@@ -65,7 +65,14 @@ export default function Navbar({ role }: NavbarProps) {
                             appearance={{
                                 elements: {
                                     avatarBox: 'w-8 h-8 ring-2 ring-violet-500/50 hover:ring-violet-500 transition-all',
-                                },
+                                    userButtonPopoverCard: 'bg-gray-950 border border-white/10 shadow-2xl backdrop-blur-xl',
+                                    userButtonPopoverActionButton: 'hover:bg-white/5 transition-colors',
+                                    userButtonPopoverActionButtonText: 'text-gray-200 font-medium',
+                                    userButtonPopoverActionButtonIcon: 'text-violet-400',
+                                    userPreviewMainIdentifier: 'text-white font-bold',
+                                    userPreviewSecondaryIdentifier: 'text-gray-400',
+                                    userButtonPopoverFooter: 'hidden', // Hide the "Secured by Clerk" for cleaner look on mobile if desired, or style it
+                                }
                             }}
                         />
 

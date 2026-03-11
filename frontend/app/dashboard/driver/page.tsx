@@ -203,8 +203,8 @@ export default function DriverDashboard() {
     return (
         <div className="flex flex-col md:flex-row h-screen bg-gray-950 text-white overflow-hidden relative">
             {/* Sidebar */}
-            <div className="w-full md:w-96 h-[50vh] md:h-full shrink-0 flex flex-col border-b md:border-b-0 md:border-r border-white/5 bg-gray-900/50 backdrop-blur-xl z-20">
-                <div className="p-8 border-b border-white/5">
+            <div className="w-full md:w-96 h-[45vh] md:h-full shrink-0 flex flex-col border-b md:border-b-0 md:border-r border-white/5 bg-gray-900/50 backdrop-blur-xl z-20">
+                <div className="p-4 md:p-8 border-b border-white/5">
                     <div className="flex items-center justify-between mb-6">
                         <h1 className="text-xl font-bold">Driver Console</h1>
                         <button
@@ -218,44 +218,44 @@ export default function DriverDashboard() {
                         </button>
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-0.5 md:space-y-1">
                         <p className="text-sm text-gray-400">{user?.fullName}</p>
-                        <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">{profile.vehicle_type} • {profile.license_number}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest mb-2 md:mb-4">{profile.vehicle_type} • {profile.license_number}</p>
                         <Link
                             href="/dashboard/driver/history"
-                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-xs font-semibold text-gray-300 hover:text-white"
+                            className="inline-flex items-center gap-2 px-3 py-1 md:py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-[10px] md:text-xs font-semibold text-gray-300 hover:text-white"
                         >
                             📊 <span>View Earnings & History</span>
                         </Link>
                     </div>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6 scrollbar-custom">
+                <div className="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-custom">
                     <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">
                         {activeRide ? 'Active Trip' : 'New Requests'}
                     </h2>
 
                     {activeRide ? (
-                        <div className="glass p-6 rounded-2xl border-violet-500/30">
+                        <div className="glass p-4 md:p-6 rounded-2xl border-violet-500/30">
                             <div className="flex items-center justify-between mb-4">
                                 <span className="text-[10px] bg-violet-500/20 text-violet-400 px-2 py-0.5 rounded font-bold uppercase">
                                     {activeRide.status}
                                 </span>
                                 <span className="text-xs font-mono">₹{activeRide.fare || '--'}</span>
                             </div>
-                            <div className="space-y-4 mb-6">
-                                <div className="flex gap-3">
+                            <div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
+                                <div className="flex gap-2 md:gap-3">
                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 shrink-0" />
                                     <div>
-                                        <p className="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Pickup</p>
-                                        <p className="text-xs text-white line-clamp-2">{activeRide.pickup_address || 'Address not available'}</p>
+                                        <p className="text-[9px] md:text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Pickup</p>
+                                        <p className="text-[11px] md:text-xs text-white line-clamp-2">{activeRide.pickup_address || 'Address not available'}</p>
                                     </div>
                                 </div>
-                                <div className="flex gap-3">
+                                <div className="flex gap-2 md:gap-3">
                                     <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" />
                                     <div>
-                                        <p className="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Destination</p>
-                                        <p className="text-xs text-white line-clamp-2">{activeRide.drop_address || 'Address not available'}</p>
+                                        <p className="text-[9px] md:text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Destination</p>
+                                        <p className="text-[11px] md:text-xs text-white line-clamp-2">{activeRide.drop_address || 'Address not available'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -268,16 +268,16 @@ export default function DriverDashboard() {
                             </button>
                         </div>
                     ) : requests.length > 0 ? (
-                        <div className="space-y-4">
+                        <div className="space-y-3 md:space-y-4">
                             {requests.map((req) => (
-                                <div key={req.id} className="glass p-5 rounded-2xl hover:bg-white/5 transition-all border border-white/5 group/card">
+                                <div key={req.id} className="glass p-4 md:p-5 rounded-2xl hover:bg-white/5 transition-all border border-white/5 group/card">
                                     <div className="flex justify-between items-start mb-3">
-                                        <div className="w-10 h-10 rounded-full bg-violet-500/10 flex items-center justify-center text-sm border border-violet-500/20 font-bold text-violet-400">
+                                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-violet-500/10 flex items-center justify-center text-xs md:text-sm border border-violet-500/20 font-bold text-violet-400">
                                             {req.rider?.name?.charAt(0) || 'U'}
                                         </div>
-                                        <div>
-                                            <p className="text-xs font-bold">{req.rider?.name || 'User'}</p>
-                                            <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest">New Request</span>
+                                        <div className="text-right">
+                                            <p className="text-[11px] md:text-xs font-bold">{req.rider?.name || 'User'}</p>
+                                            <span className="text-[8px] md:text-[9px] text-gray-500 font-mono uppercase tracking-widest">New Request</span>
                                         </div>
                                     </div>
                                     <div className="space-y-4 mb-4">
@@ -318,7 +318,7 @@ export default function DriverDashboard() {
                             {!isOnline && (
                                 <button
                                     onClick={toggleAvailability}
-                                    className="btn-primary px-8 py-3 rounded-xl text-sm font-bold shadow-lg shadow-violet-500/20 active:scale-[0.95] transition-all"
+                                    className="btn-primary px-6 md:px-8 py-2 md:py-3 rounded-xl text-xs md:text-sm font-bold shadow-lg shadow-violet-500/20 active:scale-[0.95] transition-all"
                                 >
                                     GO ONLINE
                                 </button>

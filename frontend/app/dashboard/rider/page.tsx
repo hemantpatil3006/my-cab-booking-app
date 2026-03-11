@@ -68,72 +68,71 @@ export default function RiderDashboard() {
         <div className="min-h-screen bg-gray-950">
             <Navbar role="rider" />
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <header className="mb-12">
-                    <h1 className="text-3xl font-bold mb-2">
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <header className="mb-8 md:mb-12">
+                    <h1 className="text-2xl md:text-3xl font-bold mb-2">
                         Welcome back, <span className="gradient-text">{user.firstName}</span>!
                     </h1>
-                    <p className="text-gray-400">Where would you like to go today?</p>
+                    <p className="text-gray-400 text-sm md:text-base">Where would you like to go today?</p>
                 </header>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <Link href="/dashboard/rider/book" className="card border border-violet-500/30 bg-violet-500/5 group cursor-pointer hover:border-violet-500 transition-all">
-                        <div className="w-12 h-12 rounded-xl bg-violet-500 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
+                    <Link href="/dashboard/rider/book" className="card border border-violet-500/30 bg-violet-500/5 group cursor-pointer hover:border-violet-500 transition-all p-5 md:p-6">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-violet-500 flex items-center justify-center text-lg md:text-xl mb-3 md:mb-4 group-hover:scale-110 transition-transform">
                             📍
                         </div>
-                        <h3 className="text-xl font-bold mb-2">Book a Ride</h3>
+                        <h3 className="text-lg md:text-xl font-bold mb-2">Book a Ride</h3>
                         <p className="text-sm text-gray-400">Request a car and get picked up in minutes.</p>
                     </Link>
 
-                    <Link href="/dashboard/rider/history" className="card hover:border-violet-500/50 transition-all cursor-pointer group">
-                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <Link href="/dashboard/rider/history" className="card hover:border-violet-500/50 transition-all cursor-pointer group p-5 md:p-6">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/10 flex items-center justify-center text-lg md:text-xl mb-3 md:mb-4 group-hover:scale-110 transition-transform">
                             🕒
                         </div>
-                        <h3 className="text-xl font-bold mb-2">Ride History</h3>
+                        <h3 className="text-lg md:text-xl font-bold mb-2">Ride History</h3>
                         <p className="text-sm text-gray-400">View your past trips, receipts, and ratings.</p>
                     </Link>
 
-                    <Link href="/dashboard/rider/payments" className="card hover:border-violet-500/50 transition-all cursor-pointer group">
-                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <Link href="/dashboard/rider/payments" className="card hover:border-violet-500/50 transition-all cursor-pointer group p-5 md:p-6">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/10 flex items-center justify-center text-lg md:text-xl mb-3 md:mb-4 group-hover:scale-110 transition-transform">
                             💳
                         </div>
-                        <h3 className="text-xl font-bold mb-2">Payments</h3>
+                        <h3 className="text-lg md:text-xl font-bold mb-2">Payments</h3>
                         <p className="text-sm text-gray-400">Manage your saved cards and payment methods.</p>
                     </Link>
                 </div>
 
-                <section className="glass rounded-3xl p-8 border border-white/10">
-
-                    <h2 className="text-xl font-bold mb-6">Recent Activity</h2>
+                <section className="glass rounded-3xl p-6 md:p-8 border border-white/10">
+                    <h2 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Recent Activity</h2>
 
                     {recentRides.length > 0 ? (
-                        <div className="space-y-4">
+                        <div className="space-y-3 md:space-y-4">
                             {recentRides.map(ride => (
-                                <div key={ride.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-white/10 transition-all gap-4">
-                                    <div className="flex items-center gap-4 min-w-0 flex-1">
-                                        <div className="w-10 h-10 rounded-full bg-violet-500/10 flex items-center justify-center text-sm shrink-0">
+                                <div key={ride.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-white/10 transition-all gap-4">
+                                    <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+                                        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-violet-500/10 flex items-center justify-center text-sm shrink-0">
                                             🚕
                                         </div>
                                         <div className="min-w-0 flex-1">
                                             <p className="font-bold text-sm truncate">Trip to Destination</p>
-                                            <p className="text-[10px] text-gray-500 uppercase">{new Date(ride.created_at).toLocaleDateString()}</p>
+                                            <p className="text-[10px] md:text-[10px] text-gray-500 uppercase">{new Date(ride.created_at).toLocaleDateString()}</p>
                                         </div>
                                     </div>
                                     <div className="text-left sm:text-right pt-2 sm:pt-0 border-t border-white/5 sm:border-0 shrink-0">
-                                        <p className="font-black text-white text-lg">₹{ride.fare}</p>
-                                        <p className="text-[10px] text-emerald-400 font-bold uppercase">{ride.status}</p>
+                                        <p className="font-black text-white text-base md:text-lg">₹{ride.fare}</p>
+                                        <p className="text-[9px] md:text-[10px] text-emerald-400 font-bold uppercase">{ride.status}</p>
                                     </div>
                                 </div>
                             ))}
-                            <Link href="/dashboard/rider/history" className="block text-center text-sm text-violet-400 font-bold mt-4 hover:underline">View All Activity →</Link>
+                            <Link href="/dashboard/rider/history" className="block text-center text-xs md:text-sm text-violet-400 font-bold mt-4 hover:underline">View All Activity →</Link>
                         </div>
                     ) : (
-                        <div className="flex flex-col items-center justify-center py-12 text-center">
-                            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 italic text-gray-500">
+                        <div className="flex flex-col items-center justify-center py-8 md:py-12 text-center">
+                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 italic text-gray-500 text-lg md:text-xl">
                                 ?
                             </div>
-                            <p className="text-gray-400">No recent rides found. Start your first journey!</p>
-                            <Link href="/dashboard/rider/book" className="btn-primary mt-6 px-8 py-3">Request Now</Link>
+                            <p className="text-sm md:text-base text-gray-400">No recent rides found. Start your first journey!</p>
+                            <Link href="/dashboard/rider/book" className="btn-primary mt-4 md:mt-6 px-6 md:px-8 py-2 md:py-3 text-sm md:text-base">Request Now</Link>
                         </div>
                     )}
                 </section>

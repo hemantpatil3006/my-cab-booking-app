@@ -188,7 +188,7 @@ export default function BookRidePage() {
 
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
                 {/* ─── SIDEBAR: INPUTS ────────────────────────────────────────── */}
-                <div className="w-full md:w-[450px] p-8 bg-gray-950/80 backdrop-blur-xl border-r border-white/10 flex flex-col gap-8 overflow-y-auto z-20 shadow-2xl relative">
+                <div className="w-full md:w-[450px] p-4 md:p-8 bg-gray-950/80 backdrop-blur-xl border-r border-white/10 flex flex-col gap-6 md:gap-8 overflow-y-auto z-20 shadow-2xl relative">
                     {/* Header */}
                     <div className="space-y-4">
                         <Link
@@ -201,10 +201,10 @@ export default function BookRidePage() {
                             <div className="inline-flex items-center px-3 py-1 mb-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-[10px] uppercase tracking-widest font-bold">
                                 Plan Your Trip
                             </div>
-                            <h1 className="text-3xl font-extrabold tracking-tight">
+                            <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
                                 {activeRide ? 'Ride Status' : 'Book Your Ride'}
                             </h1>
-                            {!activeRide && <p className="text-sm text-gray-400">Enter details to see estimated fare</p>}
+                            {!activeRide && <p className="text-xs md:text-sm text-gray-400">Enter details to see estimated fare</p>}
                         </div>
                     </div>
 
@@ -238,7 +238,7 @@ export default function BookRidePage() {
                                         setDropAddress(addr);
                                     }}
                                 />
-                                {drop && <div className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-lg">Set</div>}
+                                {drop && <div className="absolute -top-1 -right-1 md:-top-2 md:-right-2 bg-emerald-500 text-white text-[9px] md:text-[10px] px-1.5 md:px-2 py-0.5 rounded-full font-bold shadow-lg">Set</div>}
                             </div>
                         </div>
                     )}
@@ -248,19 +248,19 @@ export default function BookRidePage() {
                         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden group shadow-xl">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 blur-3xl -mr-16 -mt-16 group-hover:bg-violet-500/20 transition-all" />
 
-                            <div className="flex justify-between items-start relative z-10 mb-6">
+                            <div className="flex justify-between items-start relative z-10 mb-5 md:mb-6">
                                 <div className="space-y-1">
-                                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-black">Estimated Fare</p>
+                                    <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-black">Estimated Fare</p>
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-black text-white">₹{routeData.fare}</span>
-                                        <span className="text-[10px] text-gray-500">approx</span>
+                                        <span className="text-3xl md:text-4xl font-black text-white">₹{routeData.fare}</span>
+                                        <span className="text-[9px] md:text-[10px] text-gray-500">approx</span>
                                     </div>
                                 </div>
                                 <div className="text-right space-y-1">
-                                    <div className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-300">
+                                    <div className="inline-flex items-center gap-1.5 md:gap-2 px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[9px] md:text-[10px] font-bold text-gray-300">
                                         <span>⏱️ {Math.round(routeData.duration)} min</span>
                                     </div>
-                                    <p className="text-[11px] text-gray-500 font-medium tracking-tighter">Distance: {routeData.distance.toFixed(1)} km</p>
+                                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium tracking-tighter">Distance: {routeData.distance.toFixed(1)} km</p>
                                 </div>
                             </div>
 
