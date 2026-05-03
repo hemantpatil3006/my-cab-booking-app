@@ -26,9 +26,6 @@ async function keepAlive() {
   console.log(`Time: ${new Date().toISOString()}`);
   
   try {
-    // Perform a simple query that doesn't consume many resources
-    // We'll try to select 1 from any table, or just use a raw RPC/query if possible
-    // A simple way is to query a known table or just run a system command
     // Attempt 1: Try to query a common table (rides)
     const { data: ridesData, error: ridesError } = await supabase
       .from('rides')
@@ -36,26 +33,27 @@ async function keepAlive() {
       .limit(1);
 
     if (ridesError) {
-      console.warn('Note: "rides" query returned an error (expected if table is missing or empty):', ridesError.message);
+      console.warn('Note: "rides" query returned an error:', ridesError.message);
       
-      // Attempt 2: Try a generic RPC call (this often fails if not defined)
-      const { data: rpcData, error: rpcError } = await supabase.rpc('get_service_status');
-      
-      if (rpcError) {
-        console.warn('Note: RPC ping also failed:', rpcError.message);
-        
-        // Attempt 3: Just check if we can reach the health endpoint via postgrest headers
-        // Even a failed query to a non-existent table counts as "activity" for Supabase's pause logic
-        const { error: finalError } = await supabase.from('non_existent_table').select('*').limit(1);
-        console.log('Final fallback ping (to non_existent_table) completed.');
+      // If the error is 'fetch failed', it means the database is unreachable (e.g. paused) or URL is wrong.
+      if (ridesError.message.includes('fetch')) {
+        throw new Error(`Connection failed. The project might be paused or the URL is incorrect. Details: ${ridesError.message}`);
       }
+
+      // Attempt 2: Just check if we can reach the health endpoint via postgrest headers
+      const { error: finalError } = await supabase.from('non_existent_table').select('*').limit(1);
+      if (finalError && finalError.message.includes('fetch')) {
+         throw new Error(`Fallback connection failed. Details: ${finalError.message}`);
+      }
+      console.log('Final fallback ping (to non_existent_table) completed.');
+      
     } else {
       console.log('Successfully pinged "rides" table. Activity recorded.');
     }
 
     console.log('Keep-alive pulse completed successfully.');
   } catch (err) {
-    console.error('Fatal error during keep-alive pulse:', err.message);
+    console.error('❌ Fatal error during keep-alive pulse:', err.message);
     process.exit(1);
   }
 }
