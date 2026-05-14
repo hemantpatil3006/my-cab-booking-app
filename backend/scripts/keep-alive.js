@@ -15,7 +15,10 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  console.error('Error: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in environment variables.');
+  console.error('❌ Error: Missing credentials!');
+  console.error(`SUPABASE_URL provided: ${!!supabaseUrl}`);
+  console.error(`SUPABASE_KEY provided: ${!!supabaseKey}`);
+  console.error('Please ensure these are set in your GitHub Repository Secrets (Settings -> Secrets and variables -> Actions).');
   process.exit(1);
 }
 
